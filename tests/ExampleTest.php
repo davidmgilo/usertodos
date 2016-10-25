@@ -16,8 +16,10 @@ class ExampleTest extends TestCase
         // /todos -> mostra els todos del usuari logat
         $user = factory(\App\User::class);
         $task = factory(\App\Task::class);
+
+        $user->addTask($task);
         $this->actingAs($user);
-        $this->visit('/todos')
-             ->see('Laravel');
+        $this->visit('/tasks')
+             ->see($task->name);
     }
 }
